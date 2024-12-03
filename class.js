@@ -32,23 +32,35 @@ class Game {
         this.draws = document.querySelector(".draws");
 
         this.createCells();
+        this.checkState();
         this.reset();
         this.resetStat();
     }
 
     initEvents() {
         this.btnOk();
-        this.changePlayer();
-        this.notPlayer.addEventListener('click', this.changePlayer)
         this.game.addEventListener("click", (e) => {
-            this.сellClick(e)
+            this.cellClick(e)
         });
+        this.notPlayer.addEventListener('click', () => {
+            if (this.currentPlayer === 0) {
+                this.currentPlayer = 1;
+                this.notPlayer.innerHTML = "X";
+            } else if (this.currentPlayer === 1) {
+                this.currentPlayer = 0;
+                this.notPlayer.innerHTML = "O";
+            }
+            this.checkState();
+        });
+
     }
 
     checkState() {
-        const move = document.querySelector(".currentPlayer");
-        move.innerHTML = this.currentPlayer === 1 ? "O" : "X";
-        this.notPlayer.innerHTML = this.currentPlayer === 1 ? "X" : "O";
+        const move = document.querySelector(".currentPlayer") || null;
+        if (move) {
+            move.innerHTML = this.currentPlayer === 1 ? "O" : "X";
+            this.notPlayer.innerHTML = this.currentPlayer === 1 ? "X" : "O";
+        }
     }
 
     createCells() {
@@ -58,16 +70,6 @@ class Game {
             item.setAttribute("data-index", `${i + 1}`);
             this.game.appendChild(item)
         }
-    }
-    changePlayer() {
-        if (this.currentPlayer === 0) {
-            this.currentPlayer = 1;
-            this.notPlayer.innerHTML = "X";
-        } else if (this.currentPlayer === 1) {
-            this.currentPlayer = 0;
-            this.notPlayer.innerHTML = "O";
-        }
-        this.checkState();
     }
 
     checkWinner() {
@@ -80,7 +82,7 @@ class Game {
             if (xWin) {
                 this.winX.textContent = (parseInt(this.winX.textContent) || 0) + 1;
                 this.loseO.textContent = (parseInt(this.loseO.textContent) || 0) + 1;
-                this.game.removeEventListener('click', this.сellClick);
+                this.game.removeEventListener('click', this.cellClick);
                 winner.innerHTML = 'Выиграл: X!';
                 this.modalWindow.style.display = "block";
                 return;
@@ -89,7 +91,7 @@ class Game {
             if (oWin) {
                 this.winO.textContent = (parseInt(this.winO.textContent) || 0) + 1;
                 this.loseX.textContent = (parseInt(this.loseX.textContent) || 0) + 1;
-                this.game.removeEventListener('click', this.сellClick);
+                this.game.removeEventListener('click', this.cellClick);
                 winner.innerHTML = 'Выиграл: O!';
                 this.modalWindow.style.display = "block";
                 return;
@@ -103,7 +105,7 @@ class Game {
         }
     }
 
-    сellClick(event) {
+    cellClick(event) {
 
         const cell = event.target;
 
@@ -113,16 +115,16 @@ class Game {
                 this.currentPlayer = 1;
                 const cellIndex = cell.getAttribute('data-index');
                 this.answersX.push(cellIndex);
-                this.notPlayer.style.cursor = "default";
-                this.notPlayer.removeEventListener("click", this.changePlayer);
+                this.notPlayer.style.cursor = "not-allowed";
+                this.notPlayer.style.pointerEvents = "none";
             } else {
                 cell.classList.add("o");
                 this.currentPlayer = 0;
                 let cellIndex = cell.getAttribute('data-index');
                 this.answersO.push(cellIndex);
                 this.notPlayer.setAttribute('disabled', 'true');
-                this.notPlayer.style.cursor = "default";
-                this.notPlayer.removeEventListener("click", this.changePlayer);
+                this.notPlayer.style.cursor = "not-allowed";
+                this.notPlayer.style.pointerEvents = "none";
             }
 
             this.checkState();
@@ -145,12 +147,11 @@ class Game {
 
                 this.currentPlayer = 0;
                 this.notPlayer.style.cursor = "pointer";
-                this.notPlayer.addEventListener("click", this.changePlayer);
+                this.notPlayer.style.pointerEvents = "auto";
                 this.checkState();
 
-
                 this.game.addEventListener("click", (e) => {
-                    this.сellClick(e)
+                    this.cellClick(e)
                 });
             });
         });
