@@ -1,0 +1,331 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+body {
+    background-color: black;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.game {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 450px;
+    height: 450px;
+    border: 1px solid black;
+    margin: 0 auto;
+    align-self: center;
+}
+
+.cell {
+    border: 1px solid white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    font-family: monospace;
+    text-align: center;
+    line-height: 140px;
+    transition: background 0.3s ease;
+}
+
+.cell:hover {
+    background: rgba(104, 104, 104, 0.248);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.main h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.x::before {
+    content: "X";
+}
+
+.o::before {
+    content: "O";
+}
+
+.statistic table {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+.statistic td:first-child {
+    text-align: left;
+    font-weight: bold;
+}
+
+.statistic {
+    background-color: #222;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    right: 5%;
+    width: auto;
+    max-width: 300px;
+}
+
+.statistic table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.statistic td {
+    border: 1px solid #fff;
+    padding: 5px;
+    text-align: right;
+    width: auto;
+}
+
+.reset {
+    background: #ff2a4c;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.reset:hover {
+    filter: brightness(80%);
+}
+
+.reset-stat {
+    vertical-align: bottom;
+    width: 29.5px;
+    height: 29.2px;
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+}
+
+.game-func {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    height: 30px;
+}
+
+.winO,
+.loseO,
+.winX,
+.loseX {
+    min-width: 25px!important;
+}
+
+.flex-step {
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.step {
+    cursor: pointer;
+    background: #3f3f3f;
+    padding: 1px 7px;
+    border-radius: 3px;
+    user-select: none;
+}
+
+.modal-window {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.inner {
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: max-content;
+    top: 10%;
+    position: absolute;
+    background-color: #222;
+}
+
+.d-flex {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.winner h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.winner .winner {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.actions {
+    margin-top: 20px;
+}
+
+.inner button {
+    background-color: #ff2a4c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #cc2441;
+}
+
+button:focus {
+    outline: none;
+}
+
+.game-func h5 {
+    font-size: 16px;
+    font-family: monospace;
+}
+
+@media (max-width: 480px) {
+    .main h1 {
+        position: absolute;
+        top: 40px!important;
+    }
+}
+
+@media (max-width: 768px) {
+    .game {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+    .game .cell {
+        font-size: 60px;
+    }
+    .main h1 {
+        font-size: 1.5rem;
+        margin-top: 140px;
+    }
+    .statistic {
+        position: absolute;
+        top: 0;
+        left: 5%;
+        right: 5%;
+        width: auto;
+        max-width: 90%;
+        font-size: 12px;
+    }
+    .modal-window {
+        padding: 10px;
+    }
+    .inner {
+        width: 90%;
+        padding: 15px;
+    }
+    .winner h3 {
+        font-size: 1.2rem;
+    }
+    button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game {
+        width: 100%;
+        height: 375.2px;
+        margin-top: 180px;
+    }
+    .game .cell {
+        font-size: 40px;
+        line-height: normal;
+    }
+    .main h1 {
+        font-size: 1.2rem;
+        position: absolute;
+        top: -120px;
+    }
+    .statistic {
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        right: 5%;
+        width: auto;
+        max-width: 90%;
+        font-size: 12px;
+    }
+    .modal-window {
+        padding: 5px;
+    }
+    .inner {
+        width: 90%;
+        padding: 15px;
+    }
+    .winner h3 {
+        font-size: 1rem;
+    }
+    button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width:320px) {
+    .game {
+        height: 320px;
+    }
+    .main h1 {
+        margin-top: 200px;
+    }
+    .cell {
+        line-height: normal;
+    }
+}
+
+@media (max-width: 3000px) {
+    .statistic {
+        top: 10px;
+        left: 10px;
+    }
+}

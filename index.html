@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic tac toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="content">
+
+        <div class="main">
+            <h1>Tic Tac Toe</h1>
+            <div class="game">
+            </div>
+        </div>
+
+        <div class="statistic">
+            <div class="flex flex-step">
+                <h4>Current player: <span class="currentPlayer"></span></h4>
+                <h4><span class="step">O</span></h4>
+            </div>
+
+            <div class="flex">
+                <table>
+                    <tr>
+                        <td>Win X:</td>
+                        <td class="winX"></td>
+
+                    </tr>
+                    <tr>
+                        <td>Lose X:</td>
+                        <td class="loseX"></td>
+                    </tr>
+                </table>
+                <table style="margin-left: 10px;">
+                    <tr>
+                        <td>Win O:</td>
+                        <td class="winO"></td>
+
+                    </tr>
+                    <tr>
+                        <td>Lose O:</td>
+                        <td class="loseO"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="game-func">
+                <button class="reset">Reset game</button>
+                <h5>Draws: <span class="draws"></span></h5>
+                <div class="reset-img">
+                    <img src="https://i.imgur.com/VxWOVg3.png" alt="Reset statistic" title="Reset statistic" class="reset-stat">
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="modal-window">
+            <div class="d-flex">
+                <div class="inner">
+                    <div class="winner-box">
+                        <h3><span class="winner"></span></h3>
+                    </div>
+                    <div class="actions">
+                        <button class="ok">Ok</button>
+                        <button class="newGame reset">New game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script src="class.js"></script>
+<script src="script.js"></script>
